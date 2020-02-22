@@ -8,6 +8,8 @@ passport.use(
         // google people api keys
         clientID: keys.google.clientID,
         clientSecret: keys.google.clientSecret
-}, () => {
+}, (accessToken, refreshToken, profile, done) => {
     // callback function
+    console.log('passport callback function fired')
+    console.log(profile);
 }))
