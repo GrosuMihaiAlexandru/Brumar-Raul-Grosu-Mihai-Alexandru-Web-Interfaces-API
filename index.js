@@ -10,6 +10,8 @@ const passport = require('passport');
 const app = express();
 const port = 3000;
 
+app.use(express.json());
+
 app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
     keys: [keys.session.cookieKey]
@@ -18,6 +20,7 @@ app.use(cookieSession({
 // initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 // connect to mongodb
 mongoose.connect(keys.mongodb.dbURI, () => {
