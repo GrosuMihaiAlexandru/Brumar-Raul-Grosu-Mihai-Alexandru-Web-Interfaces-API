@@ -15,7 +15,7 @@ const itemSchema = new Schema({
         type: String
     },
     images: {
-        type: String
+        type: [String]
     },
     askingPrice: {
         type: String
