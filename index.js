@@ -1,6 +1,7 @@
 const express = require('express');
 const oauth = require('./routes/oauth-routes');
 const items = require('./routes/items-routes');
+const search = require('./routes/search-routes');
 const passportSetup = require('./config/passport-setup');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
@@ -30,6 +31,7 @@ mongoose.connect(keys.mongodb.dbURI, () => {
 // oauth router
 app.use('/users/auth', oauth);
 app.use('/items', items);
+app.use('/search', search);
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
