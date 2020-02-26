@@ -26,7 +26,10 @@ paths:
         content:
           application/json:
             schema:
-              type: string
+              type: object
+              properties:
+                date:
+                  type: string
             examples:
               example-1:
                 value:
@@ -54,7 +57,10 @@ paths:
         content:
           application/json:
             schema:
-              type: string
+              type: object
+              properties:
+                location:
+                  type: string
             examples:
               example-1:
                 value:
@@ -82,7 +88,10 @@ paths:
         content:
           application/json:
             schema:
-              type: string
+              type: object
+              properties:
+                category:
+                  type: string
             examples:
               example-1:
                 value:
@@ -100,7 +109,7 @@ paths:
           description: Bad Request
       description: Endpoint for creating new items to sell. Only works for logged in users.
       security:
-        - OAuth: []
+        - JWT: []
       requestBody:
         content:
           application/json:
@@ -128,12 +137,14 @@ paths:
           description: Not Found
       description: "Endpoint for updating the user's posted items."
       security:
-        - OAuth: []
+        - JWT: []
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/item'
+            examples:
+              example-1: {}
           application/xml:
             schema:
               type: object
@@ -151,7 +162,7 @@ paths:
           description: Not Found
       description: Endpoint for removing the posted item given by id.
       security:
-        - OAuth: []
+        - JWT: []
       requestBody:
         content:
           application/json:
@@ -161,25 +172,65 @@ paths:
               example-1:
                 value:
                   id: 5sdfds4f785df69dsf8569sdf8
-  /users/auth/google/redirect:
+  /auth/register:
+    post:
+      summary: ''
+      operationId: post-auth-register
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+      description: Registering the user in the database.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                email:
+                  type: string
+        description: The login credentials of the user.
+  /auth/loginForJWT:
     get:
       summary: Your GET endpoint
       tags: []
       responses:
         '200':
           description: OK
-        '201':
-          description: Created
-        '400':
-          description: Bad Request
-      operationId: get-users-auth-google-redirect
-      description: Callback route. Google redirects to this after logging in.
-  /users/auth/google:
+      operationId: get-auth-loginForJWT
+      security:
+        - Basic: []
+      description: Login to get the bearer token.
+      requestBody: {}
+  /search/userId:
     get:
       summary: Your GET endpoint
       tags: []
-      operationId: get-users-auth-google
-      description: Endpoint used to login/register with a Google Account.
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+      operationId: get-search-userId
+      description: Returns an array of items from the specified userId.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+            examples:
+              example-1:
+                value:
+                  userId: 5e56a40376290f3b7865c272
+        description: The category for searching are taken from the database.
       parameters: []
 components:
   schemas:
@@ -274,10 +325,9 @@ components:
         - sellerInfo
       description: ''
   securitySchemes:
-    OAuth:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: ''
-          refreshUrl: ''
-          scopes: {}
+    Basic:
+      type: http
+      scheme: basic
+    JWT:
+      type: http
+      scheme: bearer
