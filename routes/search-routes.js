@@ -2,6 +2,19 @@ const router = require('express').Router();
 const Item = require('../models/item-model')
 const mongoose = require('mongoose');
 
+router.get('/userId', (req,res) => {
+    if (req.body.hasOwnProperty('userId'))
+    {
+        Item.find({userId: req.body.userId}).then((currentItems) => {
+            res.status(200).json(currentItems);
+        });
+    }
+    else
+    {
+        res.sendStatus(400);
+    }
+});
+
 router.get('/category', (req, res) => {
     if (req.body.hasOwnProperty('category'))
     {

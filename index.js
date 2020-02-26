@@ -29,7 +29,7 @@ mongoose.connect(keys.mongodb.dbURI, () => {
 });
 
 // oauth router
-app.use('/users/auth', oauth);
+app.use('/auth', oauth);
 app.use('/items', items);
 app.use('/search', search);
 

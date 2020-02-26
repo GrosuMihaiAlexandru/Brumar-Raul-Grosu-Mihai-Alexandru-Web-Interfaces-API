@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const keys = require('../config/keys');
-const Item = require('../models/item-model')
+const Item = require('../models/item-model');
+const passport = require('passport');
 
 
 //middleware for checking if the user is logged in
@@ -16,12 +17,17 @@ const authCheck = (req, res, next) => {
     }
 }
 
-router.post('/', authCheck, (req, res) => {
+router.get('/test', passport.authenticate('google', { scope: ['profile']}), (req, res) => {
+    res.send("secure Hello World");
+})
+
+router.post('/', passport.authenticate('jwt', {session: false}), (req, res) => {
     // Checking if the json is valid
     if (req.body.hasOwnProperty('title') && req.body.hasOwnProperty('description') && req.body.hasOwnProperty('category') && req.body.hasOwnProperty('location') &&
     req.body.hasOwnProperty('images') && req.body.hasOwnProperty('askingPrice') && req.body.hasOwnProperty('dateOfPosting') && req.body.hasOwnProperty('deliveryType') &&
     req.body.hasOwnProperty('sellerInfo'))
     {
+        console.log(req.user);
     new Item({
         title: req.body.title,
         description: req.body.description,
@@ -34,7 +40,7 @@ router.post('/', authCheck, (req, res) => {
         sellerInfo: req.body.sellerInfo,
         userId: req.user.id
     }).save().then((newItem) => {
-        console.log('New item has been created ' + newItem);
+        //console.log('New item has been created ' + newItem);
         res.status(201).send('Item Created');
       })
     }
@@ -45,7 +51,7 @@ router.post('/', authCheck, (req, res) => {
     }
 });
 
-router.put('/', authCheck, (req, res) => {
+router.put('/', passport.authenticate('jwt', {session: false}), (req, res) => {
     if (req.body.hasOwnProperty('id'))
     {
         Item.findById(req.body.id).then((currentItem) => {
@@ -108,7 +114,7 @@ router.put('/', authCheck, (req, res) => {
     }
 })
 
-router.delete('/', authCheck, (req, res) => {
+router.delete('/', passport.authenticate('jwt', {session: false}), (req, res) => {
     if (req.body.hasOwnProperty('id'))
     {
         Item.findOneAndRemove({_id: req.body.id}, req.body, function(err,data)
