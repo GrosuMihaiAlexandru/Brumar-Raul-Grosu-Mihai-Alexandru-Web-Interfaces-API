@@ -17,18 +17,15 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
 
 router.post('/register', (req, res) => {
     if('username' in req.body == false ) {
-        res.status(400);
-        res.json({status: "Missing username from body"})
+        res.sendStatus(400);
         return;
     }
     if('password' in req.body == false ) {
-        res.status(400);
-        res.json({status: "Missing password from body"})
+        res.sendStatus(400);
         return;
     }
     if('email' in req.body == false ) {
-        res.status(400);
-        res.json({status: "Missing email from body"})
+        res.sendStatus(400);
         return;
     }
 

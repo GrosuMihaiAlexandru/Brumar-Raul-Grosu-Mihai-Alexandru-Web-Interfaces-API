@@ -1,0 +1,457 @@
+{
+	"info": {
+		"_postman_id": "7ae9c8b1-cc3e-494d-ac4b-12e35fa8ccfe",
+		"name": "MatketplaceAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth/register",
+			"item": [
+				{
+					"name": "localhost:3000/auth/register 200",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ae040dde-ca76-4a67-8e1b-64ad0f9b8827",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"john doe\",\n\t\"password\": \"1234\",\n\t\"email\": \"john@doe.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/auth/register 400",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1a686832-641a-4eb6-bc66-177b1a529c07",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"password\": \"1234\",\n\t\"email\": \"john@doe.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "auth/loginForJWT",
+			"item": [
+				{
+					"name": "localhost:3000/auth/loginForJWT",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "johnny.doe",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "johnny.doe",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/auth/loginForJWT",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"loginForJWT"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "localhost:3000/items",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU1NmE0NDZlZmY0YjkwOWIwNjg5YWFhIiwidXNlcm5hbWUiOiJqb2hubnkuZG9lIiwiZW1haWwiOiJqb2hubnkuZG9lQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3Mzk5NzcsImV4cCI6MTU4MjgyNjM3N30.nPmAYbdiz8SuUDoYZQ5Z6zMzbSMz58MYX7hUKE8QyJM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Old Chair\",\r\n  \"description\": \"nice and confortable chair\",\r\n  \"category\": \"Furniture\",\r\n  \"location\": \"London\",\r\n  \"images\": \"lksnglkdrglkdgd5gd2f4gd25g4fgcfg2cfg4cf53g4cf\",\r\n  \"askingPrice\": \"25EUR\",\r\n  \"dateOfPosting\": \"20-02-2020\",\r\n  \"deliveryType\": \"Pickup\",\r\n  \"sellerInfo\": \"Jaakko Penttinen, jaakko.penttinen@gmail.com, +35889898989\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/items",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/items",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU1NmE0NDZlZmY0YjkwOWIwNjg5YWFhIiwidXNlcm5hbWUiOiJqb2hubnkuZG9lIiwiZW1haWwiOiJqb2hubnkuZG9lQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3Mzk5NzcsImV4cCI6MTU4MjgyNjM3N30.nPmAYbdiz8SuUDoYZQ5Z6zMzbSMz58MYX7hUKE8QyJM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"5e56b2e5839b9c27b4a2d5de\",\n\t\"title\":\"Old Chair\",\n\t\"description\":\"nice and confortable chair\",\n\t\"category\":\"Furniture\",\n\t\"location\":\"Oulu, Finland\",\n\t\"askingPrice\":\"25EUR\",\n\t\"dateOfPosting\":\"19-02-2020\",\n\t\"deliveryType\":\"Pickup\",\n\t\"sellerInfo\":\"Jaakko Penttinen, jaakko.penttinen@gmail.com, +35889898989\",\n\t\"images\": [ \"lksnglkdrglkdgd5gd2f4gd25g4fgcfg2cfg4cf53g4cf\", \"hidfihdsfudsbgufaduhf\", \"544asf48asf48ad48fa48f\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/items",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/items",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU1NmE0NDZlZmY0YjkwOWIwNjg5YWFhIiwidXNlcm5hbWUiOiJqb2hubnkuZG9lIiwiZW1haWwiOiJqb2hubnkuZG9lQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3Mzk5NzcsImV4cCI6MTU4MjgyNjM3N30.nPmAYbdiz8SuUDoYZQ5Z6zMzbSMz58MYX7hUKE8QyJM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"5e56b2e5839b9c27b4a2d5de\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/items",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/search/category",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"category\": \"Furniture\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/search/category",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"search",
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/search/location",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"location\": \"Oulu\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/search/location",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"search",
+						"location"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/search/dateOfPosting",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"dateOfPosting\": \"19-02-2020\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/search/dateOfPosting",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"search",
+						"dateOfPosting"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/search/userId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": \"5e56a446eff4b909b0689aaa\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/search/userId",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"search",
+						"userId"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
