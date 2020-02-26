@@ -15,7 +15,7 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
     res.send(req.user);
 });
 
-router.post('/registerBasic', (req, res) => {
+router.post('/register', (req, res) => {
     if('username' in req.body == false ) {
         res.status(400);
         res.json({status: "Missing username from body"})
