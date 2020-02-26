@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const keys = require('../config/keys');
-const Item = require('../models/item-model')
+const Item = require('../models/item-model');
+const passport = require('passport');
 
 
 //middleware for checking if the user is logged in
@@ -15,6 +16,10 @@ const authCheck = (req, res, next) => {
         next();
     }
 }
+
+router.get('/test', passport.authenticate('google', { scope: ['profile']}), (req, res) => {
+    res.send("secure Hello World");
+})
 
 router.post('/', authCheck, (req, res) => {
     // Checking if the json is valid

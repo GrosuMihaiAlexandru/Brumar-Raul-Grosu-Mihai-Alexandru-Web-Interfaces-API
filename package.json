@@ -17,10 +17,15 @@
   },
   "homepage": "https://github.com/GrosuMihaiAlexandru/Brumar-Raul-Grosu-Mihai-Alexandru-Web-Interfaces-API#readme",
   "dependencies": {
+    "bcrypt": "^4.0.0",
+    "bcryptjs": "^2.4.3",
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.2",
     "passport": "^0.4.1",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "passport-http": "^0.3.0",
+    "passport-jwt": "^4.0.0"
   }
 }
