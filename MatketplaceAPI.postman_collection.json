@@ -1,456 +1,1388 @@
 {
 	"info": {
-		"_postman_id": "7ae9c8b1-cc3e-494d-ac4b-12e35fa8ccfe",
+		"_postman_id": "dce112dc-1540-497c-ad85-909ba72db7ef",
 		"name": "MatketplaceAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "auth/register",
+			"name": "/auth",
 			"item": [
 				{
-					"name": "localhost:3000/auth/register 200",
-					"event": [
+					"name": "/register",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"id": "ae040dde-ca76-4a67-8e1b-64ad0f9b8827",
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {",
-									"    pm.response.to.have.status(201);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"username\": \"john doe\",\n\t\"password\": \"1234\",\n\t\"email\": \"john@doe.com\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:3000/auth/register",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"auth",
-								"register"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "localhost:3000/auth/register 400",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "1a686832-641a-4eb6-bc66-177b1a529c07",
-								"exec": [
-									"pm.test(\"Status code is 400\", function () {",
-									"    pm.response.to.have.status(400);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"password\": \"1234\",\n\t\"email\": \"john@doe.com\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:3000/auth/register",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"auth",
-								"register"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "auth/loginForJWT",
-			"item": [
-				{
-					"name": "localhost:3000/auth/loginForJWT",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
+							"name": "Status: 201",
+							"event": [
 								{
-									"key": "password",
-									"value": "johnny.doe",
-									"type": "string"
+									"listen": "test",
+									"script": {
+										"id": "ae040dde-ca76-4a67-8e1b-64ad0f9b8827",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\": \"john doe\",\n\t\"password\": \"1234\",\n\t\"email\": \"john@doe.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
+								"url": {
+									"raw": "localhost:3000/auth/register",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status: 400",
+							"event": [
 								{
-									"key": "username",
-									"value": "johnny.doe",
-									"type": "string"
+									"listen": "test",
+									"script": {
+										"id": "1a686832-641a-4eb6-bc66-177b1a529c07",
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
 								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:3000/auth/loginForJWT",
-							"host": [
-								"localhost"
 							],
-							"port": "3000",
-							"path": [
-								"auth",
-								"loginForJWT"
-							]
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"password\": \"1234\",\n\t\"email\": \"john@doe.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/auth/register",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "/loginForJWT",
+					"item": [
+						{
+							"name": "Status: 200",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9df4e6a5-48fc-4dd2-b64d-e9e700107996",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "john doe",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/auth/loginForJWT",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"loginForJWT"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status: 401",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "619b7ee8-aa51-4de0-986c-f1d70c3e1447",
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {",
+											"    pm.response.to.have.status(401);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "johnny.doe123",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "johnny.doe",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/auth/loginForJWT",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"loginForJWT"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				}
 			],
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "localhost:3000/items",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+			"name": "/items",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
 						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU1NmE0NDZlZmY0YjkwOWIwNjg5YWFhIiwidXNlcm5hbWUiOiJqb2hubnkuZG9lIiwiZW1haWwiOiJqb2hubnkuZG9lQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3Mzk5NzcsImV4cCI6MTU4MjgyNjM3N30.nPmAYbdiz8SuUDoYZQ5Z6zMzbSMz58MYX7hUKE8QyJM",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"title\": \"Old Chair\",\r\n  \"description\": \"nice and confortable chair\",\r\n  \"category\": \"Furniture\",\r\n  \"location\": \"London\",\r\n  \"images\": \"lksnglkdrglkdgd5gd2f4gd25g4fgcfg2cfg4cf53g4cf\",\r\n  \"askingPrice\": \"25EUR\",\r\n  \"dateOfPosting\": \"20-02-2020\",\r\n  \"deliveryType\": \"Pickup\",\r\n  \"sellerInfo\": \"Jaakko Penttinen, jaakko.penttinen@gmail.com, +35889898989\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3000/items",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"items"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:3000/items",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+							"name": "Status: 201",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c2898f48-41c9-4dd7-a22b-4007bc64fedc",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU1NmM2NjJiN2M3MjYzM2I0YjM3MmQ3IiwidXNlcm5hbWUiOiJqb2huIGRvZSIsImVtYWlsIjoiam9obkBkb2UuY29tIn0sImlhdCI6MTU4Mjc0NzY5NiwiZXhwIjoxNTgyODM0MDk2fQ.udRCG2vNtzohqxOdtAPutRm3RQL4DlZzbmF9JLEc5xQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Old Chair 23\",\r\n  \"description\": \"nice and confortable chair\",\r\n  \"category\": \"Furniture\",\r\n  \"location\": \"London\",\r\n  \"images\": \"lksnglkdrglkdgd5gd2f4gd25g4fgcfg2cfg4cf53g4cf\",\r\n  \"askingPrice\": \"25EUR\",\r\n  \"dateOfPosting\": \"20-02-2020\",\r\n  \"deliveryType\": \"Pickup\",\r\n  \"sellerInfo\": \"Jaakko Penttinen, jaakko.penttinen@gmail.com, +35889898989\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/items",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						},
 						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU1NmE0NDZlZmY0YjkwOWIwNjg5YWFhIiwidXNlcm5hbWUiOiJqb2hubnkuZG9lIiwiZW1haWwiOiJqb2hubnkuZG9lQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3Mzk5NzcsImV4cCI6MTU4MjgyNjM3N30.nPmAYbdiz8SuUDoYZQ5Z6zMzbSMz58MYX7hUKE8QyJM",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"id\":\"5e56b2e5839b9c27b4a2d5de\",\n\t\"title\":\"Old Chair\",\n\t\"description\":\"nice and confortable chair\",\n\t\"category\":\"Furniture\",\n\t\"location\":\"Oulu, Finland\",\n\t\"askingPrice\":\"25EUR\",\n\t\"dateOfPosting\":\"19-02-2020\",\n\t\"deliveryType\":\"Pickup\",\n\t\"sellerInfo\":\"Jaakko Penttinen, jaakko.penttinen@gmail.com, +35889898989\",\n\t\"images\": [ \"lksnglkdrglkdgd5gd2f4gd25g4fgcfg2cfg4cf53g4cf\", \"hidfihdsfudsbgufaduhf\", \"544asf48asf48ad48fa48f\"]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3000/items",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"items"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:3000/items",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+							"name": "Status: 400",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5302ce7b-25a2-4683-82fc-ffd1b170ece9",
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU1NmE0NDZlZmY0YjkwOWIwNjg5YWFhIiwidXNlcm5hbWUiOiJqb2hubnkuZG9lIiwiZW1haWwiOiJqb2hubnkuZG9lQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3Mzk5NzcsImV4cCI6MTU4MjgyNjM3N30.nPmAYbdiz8SuUDoYZQ5Z6zMzbSMz58MYX7hUKE8QyJM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Old Chair\",\r\n  \"description\": \"nice and confortable chair\",\r\n  \"category\": \"Furniture\",\r\n  \"location\": \"London\",\r\n  \"images\": \"lksnglkdrglkdgd5gd2f4gd25g4fgcfg2cfg4cf53g4cf\",\r\n  \"askingPrice\": \"25EUR\",\r\n  \"sellerInfo\": \"Jaakko Penttinen, jaakko.penttinen@gmail.com, +35889898989\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/items",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						},
 						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU1NmE0NDZlZmY0YjkwOWIwNjg5YWFhIiwidXNlcm5hbWUiOiJqb2hubnkuZG9lIiwiZW1haWwiOiJqb2hubnkuZG9lQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3Mzk5NzcsImV4cCI6MTU4MjgyNjM3N30.nPmAYbdiz8SuUDoYZQ5Z6zMzbSMz58MYX7hUKE8QyJM",
-							"type": "string"
+							"name": "Status: 401",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c80b865e-1101-4a7d-9ccf-266154dfd3f4",
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {",
+											"    pm.response.to.have.status(401);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzcCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU1NmE0NDZlZmY0YjkwOWIwNjg5YWFhIiwidXNlcm5hbWUiOiJqb2hubnkuZG9lIiwiZW1haWwiOiJqb2hubnkuZG9lQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3Mzk5NzcsImV4cCI6MTU4MjgyNjM3N30.nPmAYbdiz8SuUDoYZQ5Z6zMzbSMz58MYX7hUKE8QyJM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Old Chair\",\r\n  \"description\": \"nice and confortable chair\",\r\n  \"category\": \"Furniture\",\r\n  \"location\": \"London\",\r\n  \"images\": \"lksnglkdrglkdgd5gd2f4gd25g4fgcfg2cfg4cf53g4cf\",\r\n  \"askingPrice\": \"25EUR\",\r\n  \"dateOfPosting\": \"20-02-2020\",\r\n  \"deliveryType\": \"Pickup\",\r\n  \"sellerInfo\": \"Jaakko Penttinen, jaakko.penttinen@gmail.com, +35889898989\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/items",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
 						}
-					]
-				},
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"id\":\"5e56b2e5839b9c27b4a2d5de\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3000/items",
-					"host": [
-						"localhost"
 					],
-					"port": "3000",
-					"path": [
-						"items"
-					]
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "Status: 200",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d85417e4-2a1e-4e51-ae57-96e3ff0393b4",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU1NmE0NDZlZmY0YjkwOWIwNjg5YWFhIiwidXNlcm5hbWUiOiJqb2hubnkuZG9lIiwiZW1haWwiOiJqb2hubnkuZG9lQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3Mzk5NzcsImV4cCI6MTU4MjgyNjM3N30.nPmAYbdiz8SuUDoYZQ5Z6zMzbSMz58MYX7hUKE8QyJM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\":\"5e56d1a7d3bdb42d4ccbce0d\",\n\t\"title\":\"Old Chair\",\n\t\"description\":\"nice and confortable chair\",\n\t\"category\":\"Furniture\",\n\t\"location\":\"Oulu, Finland\",\n\t\"askingPrice\":\"25EUR\",\n\t\"dateOfPosting\":\"19-02-2020\",\n\t\"deliveryType\":\"Pickup\",\n\t\"sellerInfo\":\"Jaakko Penttinen, jaakko.penttinen@gmail.com, +35889898989\",\n\t\"images\": [ \"lksnglkdrglkdgd5gd2f4gd25g4fgcfg2cfg4cf53g4cf\", \"hidfihdsfudsbgufaduhf\", \"544asf48asf48ad48fa48f\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/items",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status: 200 different body",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "376d43dd-3df0-4fc6-8f4f-3dd498bbd0a8",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU1NmE0NDZlZmY0YjkwOWIwNjg5YWFhIiwidXNlcm5hbWUiOiJqb2hubnkuZG9lIiwiZW1haWwiOiJqb2hubnkuZG9lQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3Mzk5NzcsImV4cCI6MTU4MjgyNjM3N30.nPmAYbdiz8SuUDoYZQ5Z6zMzbSMz58MYX7hUKE8QyJM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\":\"5e56d1a7d3bdb42d4ccbce0d\",\n\t\"title\":\"Old Chair\",\n\t\"description\":\"big chair\",\n\t\"category\":\"Furniture\",\n\t\"location\":\"Oulu\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/items",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status: 400",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c3f4c859-7efc-44a2-a644-dc4d5a65ea0c",
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU1NmE0NDZlZmY0YjkwOWIwNjg5YWFhIiwidXNlcm5hbWUiOiJqb2hubnkuZG9lIiwiZW1haWwiOiJqb2hubnkuZG9lQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3Mzk5NzcsImV4cCI6MTU4MjgyNjM3N30.nPmAYbdiz8SuUDoYZQ5Z6zMzbSMz58MYX7hUKE8QyJM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"title\":\"Old Chair\",\n\t\"description\":\"nice and confortable chair\",\n\t\"category\":\"Furniture\",\n\t\"askingPrice\":\"25EUR\",\n\t\"dateOfPosting\":\"19-02-2020\",\n\t\"deliveryType\":\"Pickup\"\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/items",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status: 401",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "647e8490-083d-49a3-9456-425c0c0ca1c1",
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {",
+											"    pm.response.to.have.status(401);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Iml1NmE0NDZlZmY0YjkwOWIwNjg5YWFhIiwidXNlcm5hbWUiOiJqb2hubnkuZG9lIiwiZW1haWwiOiJqb2hubnkuZG9lQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3Mzk5NzcsImV4cCI6MTU4MjgyNjM3N30.nPmAYbdiz8SuUDoYZQ5Z6zMzbSMz58MYX7hUKE8QyJM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\":\"5e56d1a7d3bdb42d4ccbce0d\",\n\t\"title\":\"Old Chair\",\n\t\"description\":\"nice and confortable chair\",\n\t\"category\":\"Furniture\",\n\t\"location\":\"Oulu, Finland\",\n\t\"askingPrice\":\"25EUR\",\n\t\"dateOfPosting\":\"19-02-2020\",\n\t\"deliveryType\":\"Pickup\",\n\t\"sellerInfo\":\"Jaakko Penttinen, jaakko.penttinen@gmail.com, +35889898989\",\n\t\"images\": [ \"lksnglkdrglkdgd5gd2f4gd25g4fgcfg2cfg4cf53g4cf\", \"hidfihdsfudsbgufaduhf\", \"544asf48asf48ad48fa48f\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/items",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status: 404",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9790426e-34ea-4ca8-bacd-b6d3a16f26c8",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU1NmE0NDZlZmY0YjkwOWIwNjg5YWFhIiwidXNlcm5hbWUiOiJqb2hubnkuZG9lIiwiZW1haWwiOiJqb2hubnkuZG9lQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3Mzk5NzcsImV4cCI6MTU4MjgyNjM3N30.nPmAYbdiz8SuUDoYZQ5Z6zMzbSMz58MYX7hUKE8QyJM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\":\"5e56b2e5839b9c27b4a2d5de\",\n\t\"title\":\"Old Chair\",\n\t\"description\":\"nice and confortable chair\",\n\t\"category\":\"Furniture\",\n\t\"location\":\"Oulu, Finland\",\n\t\"askingPrice\":\"25EUR\",\n\t\"dateOfPosting\":\"19-02-2020\",\n\t\"deliveryType\":\"Pickup\",\n\t\"sellerInfo\":\"Jaakko Penttinen, jaakko.penttinen@gmail.com, +35889898989\",\n\t\"images\": [ \"lksnglkdrglkdgd5gd2f4gd25g4fgcfg2cfg4cf53g4cf\", \"hidfihdsfudsbgufaduhf\", \"544asf48asf48ad48fa48f\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/items",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "Status: 200",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "79247e6f-f00f-4ba1-8a33-d83ee3e81eaf",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU1NmE0NDZlZmY0YjkwOWIwNjg5YWFhIiwidXNlcm5hbWUiOiJqb2hubnkuZG9lIiwiZW1haWwiOiJqb2hubnkuZG9lQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3Mzk5NzcsImV4cCI6MTU4MjgyNjM3N30.nPmAYbdiz8SuUDoYZQ5Z6zMzbSMz58MYX7hUKE8QyJM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\":\"5e56d1a7d3bdb42d4ccbce0d\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/items",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status: 400",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c182bb81-0212-432c-9c55-1cd48253a4d3",
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU1NmE0NDZlZmY0YjkwOWIwNjg5YWFhIiwidXNlcm5hbWUiOiJqb2hubnkuZG9lIiwiZW1haWwiOiJqb2hubnkuZG9lQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3Mzk5NzcsImV4cCI6MTU4MjgyNjM3N30.nPmAYbdiz8SuUDoYZQ5Z6zMzbSMz58MYX7hUKE8QyJM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"category\":\"Furniture\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/items",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status: 401",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3025012d-6ef8-4dd1-aa5d-bcc158a9534e",
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {",
+											"    pm.response.to.have.status(401);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "iOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU1NmE0NDZlZmY0YjkwOWIwNjg5YWFhIiwidXNlcm5hbWUiOiJqb2hubnkuZG9lIiwiZW1haWwiOiJqb2hubnkuZG9lQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3Mzk5NzcsImV4cCI6MTU4MjgyNjM3N30.nPmAYbdiz8SuUDoYZQ5Z6zMzbSMz58MYX7hUKE8QyJM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\":\"5e56b2e5839b9c27b4a2d5de\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/items",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status: 404",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "cb8d567f-f5f1-4cdc-ad01-2081737aa310",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU1NmE0NDZlZmY0YjkwOWIwNjg5YWFhIiwidXNlcm5hbWUiOiJqb2hubnkuZG9lIiwiZW1haWwiOiJqb2hubnkuZG9lQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI3Mzk5NzcsImV4cCI6MTU4MjgyNjM3N30.nPmAYbdiz8SuUDoYZQ5Z6zMzbSMz58MYX7hUKE8QyJM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\":\"5e56d1a7d3bdb42d44584we\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/items",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "localhost:3000/search/category",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"category\": \"Furniture\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "/search",
+			"item": [
+				{
+					"name": "/category",
+					"item": [
+						{
+							"name": "Status: 200",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ebd3fd19-b252-4bc0-add6-6cbb8cf76ba8",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"var expectedSchema = {",
+											"    \"title\": { \"type\": \"string\" },",
+											"    \"description\": { \"type\": \"string\" },",
+											"    \"category\": { \"type\": \"string\" },",
+											"    \"location\": { \"type\": \"string\" },",
+											"    \"images\": { \"type\": \"array\",",
+											"        \"items\": { \"type\": \"string\" }",
+											"    },",
+											"    \"askingPrice\": { \"type\": \"string\" },",
+											"    \"dateOfPosting\": { \"type\": \"string\" },",
+											"    \"deliveryType\": { \"type\": \"string\" },",
+											"    \"sellerInfo\": { \"type\": \"string\" },",
+											"    \"userId\": { \"type\": \"string\" }",
+											"};",
+											"",
+											"pm.test(\"Schema is valid\", function() {",
+											"    pm.expect(tv4.validate(pm.response.json(), expectedSchema)).to.be.true;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"category\": \"Furniture\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/search/category",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"search",
+										"category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status: 400",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ebd3fd19-b252-4bc0-add6-6cbb8cf76ba8",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"var expectedSchema = {",
+											"    \"title\": { \"type\": \"string\" },",
+											"    \"description\": { \"type\": \"string\" },",
+											"    \"category\": { \"type\": \"string\" },",
+											"    \"location\": { \"type\": \"string\" },",
+											"    \"images\": { \"type\": \"array\",",
+											"        \"items\": { \"type\": \"string\" }",
+											"    },",
+											"    \"askingPrice\": { \"type\": \"string\" },",
+											"    \"dateOfPosting\": { \"type\": \"string\" },",
+											"    \"deliveryType\": { \"type\": \"string\" },",
+											"    \"sellerInfo\": { \"type\": \"string\" },",
+											"    \"userId\": { \"type\": \"string\" }",
+											"};",
+											"",
+											"pm.test(\"Schema is valid\", function() {",
+											"    pm.expect(tv4.validate(pm.response.json(), expectedSchema)).to.be.true;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"category\": \"Furniture\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/search/category",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"search",
+										"category"
+									]
+								}
+							},
+							"response": []
 						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3000/search/category",
-					"host": [
-						"localhost"
 					],
-					"port": "3000",
-					"path": [
-						"search",
-						"category"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:3000/search/location",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"location\": \"Oulu\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "/location",
+					"item": [
+						{
+							"name": "Status: 200",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"location\": \"Oulu\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/search/location",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"search",
+										"location"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status: 400",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"location\": \"Oulu\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/search/location",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"search",
+										"location"
+									]
+								}
+							},
+							"response": []
 						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3000/search/location",
-					"host": [
-						"localhost"
 					],
-					"port": "3000",
-					"path": [
-						"search",
-						"location"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:3000/search/dateOfPosting",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"dateOfPosting\": \"19-02-2020\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "/dateOfPosting",
+					"item": [
+						{
+							"name": "Status: 200",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"dateOfPosting\": \"19-02-2020\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/search/dateOfPosting",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"search",
+										"dateOfPosting"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status: 400",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"weight\": \"25kg\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/search/dateOfPosting",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"search",
+										"dateOfPosting"
+									]
+								}
+							},
+							"response": []
 						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3000/search/dateOfPosting",
-					"host": [
-						"localhost"
 					],
-					"port": "3000",
-					"path": [
-						"search",
-						"dateOfPosting"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:3000/search/userId",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"userId\": \"5e56a446eff4b909b0689aaa\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "/userId",
+					"item": [
+						{
+							"name": "Status: 200",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"userId\": \"5e56a446eff4b909b0689aaa\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/search/userId",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"search",
+										"userId"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status: 400",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"userId\": \"5e56a446eff4b909b0689aaa\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/search/userId",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"search",
+										"userId"
+									]
+								}
+							},
+							"response": []
 						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3000/search/userId",
-					"host": [
-						"localhost"
 					],
-					"port": "3000",
-					"path": [
-						"search",
-						"userId"
-					]
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
