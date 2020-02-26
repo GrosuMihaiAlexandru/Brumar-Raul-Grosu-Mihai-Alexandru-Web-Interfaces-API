@@ -1,5 +1,5 @@
 const express = require('express');
-const oauth = require('./routes/oauth-routes');
+const oauth = require('./routes/auth-routes');
 const items = require('./routes/items-routes');
 const search = require('./routes/search-routes');
 const passportSetup = require('./config/passport-setup');
