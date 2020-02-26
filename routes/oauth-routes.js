@@ -1,5 +1,9 @@
 const router = require('express').Router();
 const passport = require('passport');
+const bcrypt = require('bcryptjs');
+const User = require('../models/user-model');
+const jwt = require('jsonwebtoken');
+const keys = require('../config/keys');
 
 // google authentication
 router.get('/google', passport.authenticate('google', {
@@ -30,22 +34,43 @@ router.post('/registerBasic', (req, res) => {
 
     const hashedPassword = bcrypt.hashSync(req.body.password, 6);
     console.log(hashedPassword);
-    users.addUser(req.body.username, req.body.email, hashedPassword);
 
-    res.status(201).json({ status: "created" });
+    User.findOne({username: req.body.username}).then((currentUser) => {
+      if (currentUser)
+      {
+          // user already exists
+          console.log('User is already registered: ' + currentUser);
+          done(null, currentUser);
+      }
+      else
+      {
+          // if not, create user in our db
+          new User({
+              username: req.body.username,
+              password: hashedPassword,
+              email: req.body.email
+          }).save().then((newUser) => {
+              console.log('New user has been created: ' + newUser);
+              done(null, newUser);
+          }); // the new user is saved asyncronously
+      }
+  });
+
+  res.status(201).send('Created successfully');
 })
 
 
 router.get('/loginForJWT', passport.authenticate('basic', { session: false }), (req, res) => {
+  
       const body = {
-        id: req.user.id,
+        id: req.user._id,
+        username: req.user.username,
         email : req.user.email
       };
-  
+      
       const payload = {
         user : body
       };
-  
       const options = {
         expiresIn: '1d'
       }
@@ -53,7 +78,7 @@ router.get('/loginForJWT', passport.authenticate('basic', { session: false }), (
       /* Sign the token with payload, key and options.
          Detailed documentation of the signing here:
          https://github.com/auth0/node-jsonwebtoken#readme */
-      const token = jwt.sign(payload, jwtSecretKey.secret, options);
+      const token = jwt.sign(payload, keys.secret, options);
   
       return res.json({ token });
   })
