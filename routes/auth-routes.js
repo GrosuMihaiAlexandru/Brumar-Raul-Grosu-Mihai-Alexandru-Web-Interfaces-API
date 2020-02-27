@@ -1,19 +1,10 @@
 const router = require('express').Router();
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
-const User = require('../models/user-model');
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
 
-// google authentication
-router.get('/google', passport.authenticate('google', {
-    scope: ['https://www.googleapis.com/auth/userinfo.profile']
-}));
-
-// google authentication callback route
-router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
-    res.send(req.user);
-});
+const users = require('../database/users');
 
 router.post('/register', (req, res) => {
     if('username' in req.body == false ) {
@@ -30,37 +21,31 @@ router.post('/register', (req, res) => {
     }
 
     const hashedPassword = bcrypt.hashSync(req.body.password, 6);
-    console.log(hashedPassword);
+    // console.log(hashedPassword);
 
-    User.findOne({username: req.body.username}).then((currentUser) => {
-      if (currentUser)
-      {
-          // user already exists
-          console.log('User is already registered: ' + currentUser);
-          done(null, currentUser);
-      }
-      else
-      {
-          // if not, create user in our db
-          new User({
-              username: req.body.username,
-              password: hashedPassword,
-              email: req.body.email
-          }).save().then((newUser) => {
-              console.log('New user has been created: ' + newUser);
-              done(null, newUser);
-          }); // the new user is saved asyncronously
-      }
-  });
+    const currentUser = users.getUserByName(req.body.username);
+    
+    if (currentUser)
+    {
+        // user already exists
+        console.log('User is already registered: ' + currentUser);
+        res.status(200).send('Already exists');
+    }
+    else
+    {
+        // if not, create user in our db
+        users.addUser(req.body.username, req.body.email, hashedPassword);
 
-  res.status(201).send('Created successfully');
-})
+        res.status(201).json({ status: "created" });
+    }
 
+    // res.status(201).send('Created successfully');
+});
 
 router.get('/loginForJWT', passport.authenticate('basic', { session: false }), (req, res) => {
   
       const body = {
-        id: req.user._id,
+        id: req.user.id,
         username: req.user.username,
         email : req.user.email
       };
@@ -72,9 +57,6 @@ router.get('/loginForJWT', passport.authenticate('basic', { session: false }), (
         expiresIn: '1d'
       }
   
-      /* Sign the token with payload, key and options.
-         Detailed documentation of the signing here:
-         https://github.com/auth0/node-jsonwebtoken#readme */
       const token = jwt.sign(payload, keys.secret, options);
   
       return res.json({ token });

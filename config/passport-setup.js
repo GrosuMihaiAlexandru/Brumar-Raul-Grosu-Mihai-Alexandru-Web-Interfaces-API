@@ -1,40 +1,31 @@
 const passport = require('passport');
 const BasicStrategy = require('passport-http').BasicStrategy;
-const GoogleStrategy = require('passport-google-oauth20');
-const JwtStrategy = require('passport-jwt').Strategy,
-      ExtractJwt = require('passport-jwt').ExtractJwt;
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
 const keys = require('./keys');
-const User = require('../models/user-model');
 const bcrypt = require('bcryptjs');
 
-passport.serializeUser((obj, done) => {
-    done(null, obj.user.id);
-});
-
-passport.deserializeUser((id, done) => {
-    User.findById(id).then((user) => {
-        done(null, user);
-    });
-});
+const users = require('../database/users');
 
 // Basic auth
 passport.use(new BasicStrategy((username, password, done) => {
-    User.findOne({username: username}).then((currentUser) => {
-        if (currentUser == undefined)
-        {
-            // Username not found
-            console.log("HTTP Basic username not found");
-            return done(null, false, { message: "HTTP Basic username not found" });
-        }
+    const currentUser = users.getUserByName(username);
 
-        if(bcrypt.compareSync(password, currentUser.password) == false)
-        {
-            // Password does not match
-            console.log("HTTP Basic password not matching username");
-            return done(null, false, { message: "HTTP Basic password not found" });
-        }
-        return done(null, currentUser);
-    })
+    if (currentUser == undefined)
+    {
+        // Username not found
+        console.log("HTTP Basic username not found");
+        return done(null, false, { message: "HTTP Basic username not found" });
+    }
+
+    if(bcrypt.compareSync(password, currentUser.password) == false)
+    {
+        // Password does not match
+        console.log("HTTP Basic password not matching username");
+        return done(null, false, { message: "HTTP Basic password not found" });
+    }
+
+    return done(null, currentUser);
 }));
 
 // JWT auth
@@ -56,34 +47,3 @@ passport.use(
         }*/
     }) 
 );
-
-passport.use(
-    new GoogleStrategy({
-        callbackURL: '/users/auth/google/redirect',
-        // google people api keys
-        clientID: keys.google.clientID,
-        clientSecret: keys.google.clientSecret
-}, (accessToken, refreshToken, profile, done) => {
-    // check if user already exists
-    //console.log("passport callback")
-    User.findOne({googleId: profile.id}).then((currentUser) => {
-        if (currentUser)
-        {
-            // user already exists
-            console.log('User is already registered: ' + accessToken);
-            done(null, { user: currentUser, accessToken: accessToken});
-            
-        }
-        else
-        {
-            // if not, create user in our db
-            new User({
-                username: profile.displayName,
-                googleId: profile.id
-            }).save().then((newUser) => {
-                console.log('New user has been created: ' + newUser);
-                done(null, newUser);
-            }); // the new user is saved asyncronously
-        }
-    });
-}));
