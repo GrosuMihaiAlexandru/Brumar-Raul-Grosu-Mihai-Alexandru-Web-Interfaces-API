@@ -1,13 +1,13 @@
 const router = require('express').Router();
-const Item = require('../models/item-model')
 const mongoose = require('mongoose');
+
+const items = require('../database/items');
 
 router.get('/userId', (req,res) => {
     if (req.body.hasOwnProperty('userId'))
     {
-        Item.find({userId: req.body.userId}).then((currentItems) => {
-            res.status(200).json(currentItems);
-        });
+        const currentItems = items.getAllUserItems(req.body.userId);
+        res.status(200).json(currentItems);
     }
     else
     {
@@ -18,9 +18,8 @@ router.get('/userId', (req,res) => {
 router.get('/category', (req, res) => {
     if (req.body.hasOwnProperty('category'))
     {
-        Item.find({category: req.body.category}).then((currentItems) => {
-            res.status(200).json(currentItems);
-        });
+        const currentItems = items.getAllCategoryItems(req.body.category);
+        res.status(200).json(currentItems);
     }
     else
     {
@@ -31,9 +30,8 @@ router.get('/category', (req, res) => {
 router.get('/location', (req, res) => {
     if (req.body.hasOwnProperty('location'))
     {
-        Item.find({location: req.body.location}).then((currentItems) => {
-            res.status(200).json(currentItems);
-        });
+        const currentItems = items.getAllLocationItems(req.body.location);
+        res.status(200).json(currentItems);
     }
     else
     {
@@ -44,9 +42,8 @@ router.get('/location', (req, res) => {
 router.get('/dateOfPosting', (req, res) => {
     if (req.body.hasOwnProperty('dateOfPosting'))
     {
-        Item.find({dateOfPosting: req.body.dateOfPosting}).then((currentItems) => {
-            res.status(200).json(currentItems);
-        });
+        const currentItems = items.getAllDateOfPostingItems(req.body.dateOfPosting);
+        res.status(200).json(currentItems);
     }
     else
     {

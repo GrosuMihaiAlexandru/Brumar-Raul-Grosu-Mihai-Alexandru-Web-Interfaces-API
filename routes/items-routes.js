@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const keys = require('../config/keys');
-const Item = require('../models/item-model');
 const passport = require('passport');
 
+const items = require('../database/items');
 
 //middleware for checking if the user is logged in
 const authCheck = (req, res, next) => {
@@ -28,21 +28,10 @@ router.post('/', passport.authenticate('jwt', {session: false}), (req, res) => {
     req.body.hasOwnProperty('sellerInfo'))
     {
         console.log(req.user);
-    new Item({
-        title: req.body.title,
-        description: req.body.description,
-        category: req.body.category,
-        location: req.body.location,
-        images: req.body.images,
-        askingPrice: req.body.askingPrice,
-        dateOfPosting: req.body.dateOfPosting,
-        deliveryType: req.body.deliveryType,
-        sellerInfo: req.body.sellerInfo,
-        userId: req.user.id
-    }).save().then((newItem) => {
-        //console.log('New item has been created ' + newItem);
+        
+        items.insertItem(req.body.userId, req.body.images, req.body.title, req.body.description, req.body.category, req.body.location, req.body.askingPrice, req.body.dateOfPosting, req.body.deliveryType, req.body.sellerInfo);
+        
         res.status(201).send('Item Created');
-      })
     }
     else
     {
@@ -54,62 +43,19 @@ router.post('/', passport.authenticate('jwt', {session: false}), (req, res) => {
 router.put('/', passport.authenticate('jwt', {session: false}), (req, res) => {
     if (req.body.hasOwnProperty('id'))
     {
-        Item.findById(req.body.id).then((currentItem) => {
-            if (currentItem)
-            {
-                // Every other property besides id is not mandatory
-                // Only the given properties will be updated
-                if (req.body.hasOwnProperty('title'))
-                {
-                    currentItem.title = req.body.title;
-                }
-                if (req.body.hasOwnProperty('description'))
-                {
-                    currentItem.description = req.body.description;
-                }
-                if (req.body.hasOwnProperty('category'))
-                {
-                    currentItem.category = req.body.category;
-                }
-                if (req.body.hasOwnProperty('location'))
-                {
-                    currentItem.location = req.body.location;
-                }
-                if (req.body.hasOwnProperty('images'))
-                {
-                    currentItem.images = req.body.images;
-                }
-                if (req.body.hasOwnProperty('askingPrice'))
-                {
-                    currentItem.askingPrice = req.body.askingPrice;
-                }
-                if (req.body.hasOwnProperty('dateOfPosting'))
-                {
-                    currentItem.dateOfPosting = req.body.dateOfPosting;
-                }
-                if (req.body.hasOwnProperty('deliveryType'))
-                {
-                    currentItem.deliveryType = req.body.deliveryType;
-                }
-                if (req.body.hasOwnProperty('sellerInfo'))
-                {
-                    currentItem.sellerInfo = req.body.sellerInfo;
-                }
+        if (items.getItem(req.body.id))
+        {
+            items.modifyItem(req.body.id, req.body);
 
-                currentItem.save().then(() => {
-                    console.log('Item Updated to ' + currentItem);
-                    res.status(200).send('Item Updated');
-                })
-            }  
-            else
-            {
-                res.status(404).send("Item not found");
-            } 
-        })
+            res.status(200).send('Item Updated');
+        }
+        else
+        {
+            res.sendStatus(404);
+        }
     }
     else
     {
-        console.log(req.body);
         res.sendStatus(400);
     }
 })
@@ -117,17 +63,15 @@ router.put('/', passport.authenticate('jwt', {session: false}), (req, res) => {
 router.delete('/', passport.authenticate('jwt', {session: false}), (req, res) => {
     if (req.body.hasOwnProperty('id'))
     {
-        Item.findOneAndRemove({_id: req.body.id}, req.body, function(err,data)
+        if (items.getItem(req.body.id))
         {
-            if(!err){
-                res.status(200).send("Deleted");
-            }
-            else
-            {
-                res.sendStatus(404);
-            }
-        });
-        
+            items.deleteItem(req.body.id);
+            res.status(200).send('Deleted');
+        }
+        else
+        {
+            res.sendStatus(404);
+        }
     }
     else
     {
