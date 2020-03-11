@@ -6,7 +6,7 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  /search/date:
+  '/search/date/:itemDate':
     get:
       summary: Your GET endpoint
       tags: []
@@ -19,24 +19,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/item'
-        '400':
-          description: Bad Request
       operationId: get-search-date
       requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                date:
-                  type: string
-            examples:
-              example-1:
-                value:
-                  date: 25-10-2019
         description: 'Date when the item was posted. (format: dd-mm-yyyy)'
       description: Returns an array of items with the specified date.
-  /search/location:
+    parameters: []
+  '/search/location/:itemLocation':
     get:
       summary: Your GET endpoint
       tags: []
@@ -49,24 +37,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/item'
-        '400':
-          description: Bad Request
       operationId: get-search-location
       description: Returns an array of items from the specified location.
       requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                location:
-                  type: string
-            examples:
-              example-1:
-                value:
-                  location: Oulu
         description: Location from where the item was posted.
-  /search/category:
+    parameters: []
+  '/search/category/:itemCategory':
     get:
       summary: Your GET endpoint
       tags: []
@@ -79,23 +55,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/item'
-        '400':
-          description: Bad Request
+        '':
+          description: ''
       operationId: get-search
       parameters: []
       description: Returns an array of items from the specified category.
       requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                category:
-                  type: string
-            examples:
-              example-1:
-                value:
-                  category: Furniture
         description: The category for searching are taken from the database.
     parameters: []
   /items:
@@ -219,17 +184,6 @@ paths:
       operationId: get-search-userId
       description: Returns an array of items from the specified userId.
       requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                userId:
-                  type: string
-            examples:
-              example-1:
-                value:
-                  userId: 5e56a40376290f3b7865c272
         description: The category for searching are taken from the database.
       parameters: []
 components:
