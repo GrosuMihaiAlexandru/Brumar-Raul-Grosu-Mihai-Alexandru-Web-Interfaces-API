@@ -172,20 +172,25 @@ paths:
         - Basic: []
       description: Login to get the bearer token.
       requestBody: {}
-  /search/userId:
+  '/search/user/:userId':
     get:
       summary: Your GET endpoint
       tags: []
       responses:
         '200':
           description: OK
-        '400':
-          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/item'
       operationId: get-search-userId
       description: Returns an array of items from the specified userId.
       requestBody:
         description: The category for searching are taken from the database.
       parameters: []
+    parameters: []
 components:
   schemas:
     item:
