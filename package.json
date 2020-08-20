@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/GrosuMihaiAlexandru/Brumar-Raul-Grosu-Mihai-Alexandru-Web-Interfaces-API#readme",
   "dependencies": {
-    "bcrypt": "^4.0.0",
+    "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
